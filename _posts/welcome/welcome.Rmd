@@ -1,10 +1,8 @@
 ---
 title: "Welcome to Basketball Blog"
-description: |
-  Welcome to our new blog, Basketball Blog. We hope you enjoy 
-  reading what we have to say!
+description: "Welcome to my blog where we outline the intersection of coaching science and basketball"
 author:
-  - name: Nora Jones 
+  - name: Mike Toolan 
     url: https://example.com/norajones
     affiliation: Spacely Sprockets
     affiliation_url: https://example.com/spacelysprokets
