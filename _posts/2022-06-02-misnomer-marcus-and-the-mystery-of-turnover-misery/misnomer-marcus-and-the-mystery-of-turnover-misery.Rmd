@@ -1,7 +1,7 @@
 ---
 title: "Misnomer Marcus and the Mystery of Turnover Misery"
 description: |
-  Marcus Smart is not aptly named, but does it matter?
+  Marcus Smart may not be the NBA's most appropriately named player, but does it matter?
 author:
   - name: Mike Toolan
     url: https://example.com/norajones
@@ -15,12 +15,13 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
-Marcus Smart has not always shone through as the highest basketball IQ player. Shaq devotess an entire montage to him:
+The Celtic's Marcus Smart has not always shone through as the highest basketball IQ player in the league. Some years ago, Shaquille O'Neal, in his infamous Shaqtin' a fool series, devoted an entire montage to his flopping antics. Our personal favourite is the Isiah Thomas piggyback:
 
-<iframe width = "560" height = "315" src = "https://www.youtube.com/watch?v=OLA51MMbROQ&ab_channel=ShaQtime" frameborder = "0" data-external="1" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/OLA51MMbROQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Indeed against the Bucks two weeks ago, he nearly singlehandedly ended the Celtics run to the NBA finals:
+Indeed in game 5 against the Bucks, he nearly single handedly ended the Celtics run to the NBA finals. With Boston leading by a single point in this seemingly crucial game, Smart proceeded to turn an easy defensive rebound into a turnover, had a lay up blocked and dribbled right into a Milwaukee trap, handing them the ball in what was the game's final action. All of this is even more impressive given that it was achieved within the final 14.2 seconds. And just like that, a slim Celtics lead became a definite loss and the need for a game 7 if they were to progress.
 
-<iframe src="https://www.youtube.com/watch?v=8zK6La4g8sU&ab_channel=MikeHonchoHisself" data-external = "1" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/8zK6La4g8sU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+But maybe the important take away is this: _the Celtics won the series_.
 
