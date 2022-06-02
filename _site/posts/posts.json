@@ -1,5 +1,22 @@
 [
   {
+    "path": "posts/2022-06-02-misnomer-marcus-and-the-mystery-of-turnover-misery/",
+    "title": "Misnomer Marcus and the Mystery of Turnover Misery",
+    "description": "Marcus Smart is not aptly named, but does it matter?",
+    "author": [
+      {
+        "name": "Mike Toolan",
+        "url": "https://example.com/norajones"
+      }
+    ],
+    "date": "2022-06-02",
+    "categories": [],
+    "contents": "\r\nMarcus Smart has not always shone through as the highest basketball IQ player. Shaq devotess an entire montage to him:\r\n\r\n\r\nIndeed against the Bucks two weeks ago, he nearly singlehandedly ended the Celtics run to the NBA finals:\r\n\r\n\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2022-06-02T00:43:10-04:00",
+    "input_file": "misnomer-marcus-and-the-mystery-of-turnover-misery.knit.md"
+  },
+  {
     "path": "posts/welcome/",
     "title": "Welcome to Basketball Blog",
     "description": "Welcome to my blog where we outline the intersection of coaching science and basketball",
@@ -13,7 +30,7 @@
     "categories": [],
     "contents": "\r\n\r\n\r\n\r\n",
     "preview": {},
-    "last_modified": "2022-06-01T23:37:26-04:00",
+    "last_modified": "2022-06-02T00:18:34-04:00",
     "input_file": {}
   }
 ]

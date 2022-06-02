@@ -1,5 +1,6 @@
 name: "basketball_blog"
 title: "Basketball Blog"
+theme: mike.css
 description: |
   Basketball Blog
 output_dir: "_site"

@@ -3,17 +3,17 @@
     {
       "path": "about.html",
       "title": "About this blog",
-      "description": "I am testing this feature",
+      "description": "This blog was motivated by the lack of quality, creative coverage elsewhere in the media. Content is often biased, makes little analytical sense and is couched in lazy cliches. Our reporting seeks to change that, with well thought out long form pieces, backed up by clear thinking, data and most of all, common sense. We hope that you will find something for everyone here, with basketball covered from many perspectives.",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2022-06-01T23:44:52-04:00"
+      "last_modified": "2022-06-02T00:19:16-04:00"
     },
     {
       "path": "index.html",
       "title": "Basketball Blog",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2022-06-01T23:37:26-04:00"
+      "last_modified": "2022-06-02T00:18:34-04:00"
     }
   ],
   "collections": ["posts/posts.json"]

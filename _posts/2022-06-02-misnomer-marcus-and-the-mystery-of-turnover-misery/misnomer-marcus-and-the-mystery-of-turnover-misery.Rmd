@@ -1,0 +1,26 @@
+---
+title: "Misnomer Marcus and the Mystery of Turnover Misery"
+description: |
+  Marcus Smart is not aptly named, but does it matter?
+author:
+  - name: Mike Toolan
+    url: https://example.com/norajones
+date: 2022-06-02
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+Marcus Smart has not always shone through as the highest basketball IQ player. Shaq devotess an entire montage to him:
+
+<iframe width = "560" height = "315" src = "https://www.youtube.com/watch?v=OLA51MMbROQ&ab_channel=ShaQtime" frameborder = "0" data-external="1" allowfullscreen></iframe>
+
+Indeed against the Bucks two weeks ago, he nearly singlehandedly ended the Celtics run to the NBA finals:
+
+<iframe src="https://www.youtube.com/watch?v=8zK6La4g8sU&ab_channel=MikeHonchoHisself" data-external = "1" allowfullscreen></iframe>
+
+
