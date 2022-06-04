@@ -1,0 +1,49 @@
+---
+title: "Key Take Aways From Game 1: Celtics at Warriors"
+description: |
+  Steph Curry, Al Horford and Tom Cruise.
+author:
+  - name: Mike Toolan
+    url: {}
+date: 2022-06-04
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+### Payton Pritchard: Do the little things well
+
+Pritchard is one of the smallest players on the floor and this has been a feature of his career since  
+[college](https://www.nytimes.com/2022/06/04/sports/basketball/payton-pritchard-boston-celtics.html). However, against the Warriors he showed how important small details can be. While only playing for a grand total of 16 minutes, he managed to notch 8 points, had 2 assists and the fourth highest +/- in the game at +14. When it comes to the finer things, Pritchard illustrated a perfect example in the fourth quarter. The Celtics were on defence and deflected the ball high into the air. When Brown eventually emerged with the ball, Pritchard, on the weak side of the floor, had 7 other players between him and the Warriors basket. He proceeded to beat every one of them in transition to receive a pass from Brown and score a wide open layup, kick starting the Celtics comeback. This tiny detail and unmistakeable effort perfectly encasulate his impact.
+
+### Boston Make Adjustments... Eventually
+
+Long have our frustrations been with the amount of time it takes the Celtics to make in-game adjustments. In the series against Miami, the Heat time and again targeted Grant Williams with a Jimmy Butler pick and roll and Williams - either afraid of Butler coming downhill or under specific instruction from the coaches - backed off, giving Butler plentiful opportunities to finish from the mid-range. 
+
+Similarly in this series, the Celtics failed to recognize the minuscule gaps they were allowing off pick and rolls were enough for Curry and co. to take full advantage with open 3 point looks. It took until mid-way through the third quarter before they finally started to be aggressive defending any ball screen. Not long after that, the Celtics went on their exceptional run to finish convincing winners. Expect the Warriors to respond with a new strategy in game 2, most likely with Curry setting more screens himself and then cutting to get open, rather than receiving ball screens early in the offence.
+
+### Body Language Matters
+
+Unfortunately the NBA coaching ranks continue to be populated by former players rather than specialist coaches, leading to rookie mistakes a top high school coach would never make. Take Steve Kerr. During a time out in the third quarter with 5 minutes 19 on the clock, the camera cut to a scene of him laughing and joking on the Warriors bench. This was when the Warriors were up 9. Presumably, Kerr was starting to relax and perhaps subconsciously was slipping into a comfort zone. To describe this as amateurish is generous. 
+
+While everyone can approach the game in their own way with their own personality, Kerr's body language and demeanor was completely different by the end of the fourth, suggesting he had lost focus and urgency earlier. Of course, by then it was too little, too late and the Warriors succumbed to the Celtics fightback. If this was a person who had trained as a coach, they would never have allowed a change in body language, which could affect the players drastically, even if not intentional. 
+
+![Focused and urgent - but too late in the day](images\kerr.png)
+
+### Curry Continues to Excel, with Klay not far behind
+
+Steph Curry has a release time like no other player in the league. The Celtics undoubtedly had prepared for him to shoot, but the tiny windows within which Curry found himself open were enough to show how generational of a talent he is. That is not to discount the brilliance of Thompson and their partnership on the floor. Just take a look at [this](https://www.youtube.com/watch?v=ZGbQbG2Lb-U&ab_channel=ESPN) stunning score where Curry was that confident, he did not even need to look when passing or when Klay was shooting. More to come.
+
+### Al Horford and ... Top Gun?
+
+Tom Cruise and [Top Gun: Maverick](https://www.youtube.com/watch?v=giXco2jaZ_4&ab_channel=ParamountPictures) showed us recently that old dogs really can produce something magical. By making a commitment to crafting something real by flying actual F-18s, Cruise showed that its never too late to do something extraordinary, and all it takes is care, commitment and hard work. Al Horford has done the same. The veteran at 36 years of age scored 75% of his shots, nailing 6 of 8 three pointers in his first ever finals appearance. This is after playing 141 playoff games throughout his career without ever making it to the biggest stage. 
+
+![Celebrating against the Warriors](images\horford.png)
+
+We were then treated to his post match interview, in which he gave thanks, stayed humble and enjoyed the moment.
+
+And so, just like Top Gun 2, and nearly all good things in life, sometimes you have to wait, but what you wait for is excellent.
