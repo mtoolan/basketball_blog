@@ -3,7 +3,7 @@ title: "Misnomer Marcus and the Mystery of Turnover Misery"
 description: |
   Marcus Smart may not be the NBA's most appropriately named player, but does it matter?
 author:
-  - name: Zach Lowe
+  - name: Mike Toolan
     url: 
 date: 2022-06-02
 output:
