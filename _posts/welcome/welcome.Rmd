@@ -2,8 +2,8 @@
 title: "Welcome to Basketball Blog"
 description: "Welcome to my blog where we outline the intersection of coaching science and basketball"
 author:
-  - name: Mike Toolan 
-    url: https://example.com/norajones
+  - name: Michael Toolan
+    url: 
     affiliation: Irish Basketball Coach
     affiliation_url: https://example.com/spacelysprokets
 date: 06-01-2022
