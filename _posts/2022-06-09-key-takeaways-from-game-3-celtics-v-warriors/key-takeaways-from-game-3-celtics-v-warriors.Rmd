@@ -1,0 +1,280 @@
+---
+title: "Key Takeaways from game 3: Celtics v Warriors"
+description: |
+  Celtics pick and roll defence improves, Klay finds his range
+author:
+  - name: Mike Toolan
+    url: {}
+date: 2022-06-09
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/lFovcuvoGCg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+### Stick to the right thing, even at a cost
+
+One of the 'almost' turning points in game 3 was the moment Steph Curry was fouled by Al Horford while making a three.
+
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/n0KPBcrD6Rs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+In an attempt to get contest the shot, Horford rushed towards Curry after his defender had set a screen. Unfortunately for Horford, Curry drilled the three while also getting caught by the unrushing Horford as he made his way back to Earth. After a review, the officials determined it was a flagrant 1 on Horford and that the Warriors would get a free throw and the ball back. This single play was a 7 point swing in favour of the Warriors and nearly resulted in an unlikely comeback, cutting the Celtics lead from 9 to 2.
+
+Here's the thing, _Horford was right_. Curry has shown time and again in this series how prolific he is off ball screens and game 3 was no exception. Any hesitation, gap, or space he can find after receiving a screen is equivalent to a wide open three for most other players. Horford, recognizing this, tried in desperation to shut down the space, giving up the foul. While this was not the desired result, _on average_ the Celtics were very successful in shutting down Curry's attempts from 3 compared to game 1. 
+
+```{r Loading libraries and getting data}
+library(nbastatR)
+library(tidyverse)
+library(BasketballAnalyzeR)
+library(jsonlite)
+library(janitor)
+library(extrafont)
+library(ggrepel)
+library(scales)
+library(teamcolors)
+library(zoo)
+library(future)
+library(lubridate)
+library(ggplot2)
+library(gridExtra)
+library(grid)
+library(cowplot)
+
+Sys.setenv("VROOM_CONNECTION_SIZE" = 131072 * 2)
+
+warriors_shots = teams_shots(teams = "Golden State Warriors", seasons = 2022, season_types = "Playoffs")
+
+
+game_1_date = 20220602
+game_2_date = 20220605
+game_3_date = 20220608
+
+curry_v_boston = warriors_shots %>% filter(., namePlayer == "Stephen Curry",
+                                  dateGame == c(game_1_date,
+                                               game_2_date,
+                                               game_3_date))
+
+curry_season = bref_players_stats(seasons = 2022) %>%
+  filter(namePlayer == "Stephen Curry")
+
+reg_season_fga_per_game = curry_season$fgaTotals / curry_season$countGames %>%
+  set_names(., "FGAPG")
+
+boston_fga_per_game = round(nrow(curry_v_boston) / 3, 2) %>%
+  set_names(., "FGAPG")
+
+ratio = reg_season_fga_per_game / boston_fga_per_game %>%
+  set_names("ratio")
+
+curry_shooting_stats = bind_rows(reg_season_fga_per_game, 
+                                 boston_fga_per_game) %>%
+  mutate(season_stage = c("Regular Season", "NBA Final"))
+
+curry_field_goal_attempts = curry_shooting_stats %>%
+  ggplot(., aes(x = season_stage, 
+                                   y = FGAPG)) + 
+    geom_bar(stat = "identity",  fill="#520f0f") + 
+  geom_text(aes(label = FGAPG), vjust=1.6, color="white", size=3.5) +
+  theme_minimal() + 
+  labs(title="Steph Curry Shots Per Game", 
+         x="Stage of Season", y = "Field Goals Attempted") +   
+  scale_x_discrete(limits=c("Regular Season", "NBA Final"))
+
+curry_field_goal_attempts
+
+```
+
+```{r Create Court}
+circle_points = function(center = c(0, 0), radius = 1, npoints = 360) {
+  angles = seq(0, 2 * pi, length.out = npoints)
+  return(data_frame(x = center[1] + radius * cos(angles),
+                    y = center[2] + radius * sin(angles)))
+}
+# Court Dimenons & lines
+width = 50
+height = 94 / 2
+key_height = 19
+inner_key_width = 12
+outer_key_width = 16
+backboard_width = 6
+backboard_offset = 4
+neck_length = 0.5
+hoop_radius = 0.75
+hoop_center_y = backboard_offset + neck_length + hoop_radius
+three_point_radius = 23.75
+three_point_side_radius = 22
+three_point_side_height = 14
+# Court themes
+court_themes = list(
+  light = list(
+    court = 'floralwhite',
+    lines = '#999999',
+    text = '#222222',
+    made = '#00bfc4',
+    missed = '#f8766d',
+    hex_border_size = 1,
+    hex_border_color = "#000000"
+  ),
+  dark = list(
+    court = '#000004',
+    lines = '#999999',
+    text = '#f0f0f0',
+    made = '#00bfc4',
+    missed = '#f8766d',
+    hex_border_size = 0,
+    hex_border_color = "#000000"
+  ),
+  ppt = list(
+    court = 'gray20',
+    lines = 'white',
+    text = '#f0f0f0',
+    made = '#00bfc4',
+    missed = '#f8766d',
+    hex_border_size = 0,
+    hex_border_color = "gray20"
+)
+)
+# Function to create court based on given dimensions
+plot_court = function(court_theme = court_themes$light, use_short_three = FALSE) {
+  if (use_short_three) {
+    three_point_radius = 22
+    three_point_side_height = 0
+  }
+  
+  court_points = data_frame(
+    x = c(width / 2, width / 2, -width / 2, -width / 2, width / 2),
+    y = c(height, 0, 0, height, height),
+    desc = "perimeter"
+  )
+  
+  court_points = bind_rows(court_points , data_frame(
+    x = c(outer_key_width / 2, outer_key_width / 2, -outer_key_width / 2, -outer_key_width / 2),
+    y = c(0, key_height, key_height, 0),
+    desc = "outer_key"
+  ))
+  
+  court_points = bind_rows(court_points , data_frame(
+    x = c(-backboard_width / 2, backboard_width / 2),
+    y = c(backboard_offset, backboard_offset),
+    desc = "backboard"
+  ))
+  
+  court_points = bind_rows(court_points , data_frame(
+    x = c(0, 0), y = c(backboard_offset, backboard_offset + neck_length), desc = "neck"
+  ))
+  
+  foul_circle = circle_points(center = c(0, key_height), radius = inner_key_width / 2)
+  
+  foul_circle_top = filter(foul_circle, y > key_height) %>%
+    mutate(desc = "foul_circle_top")
+  
+  foul_circle_bottom = filter(foul_circle, y < key_height) %>%
+    mutate(
+      angle = atan((y - key_height) / x) * 180 / pi,
+      angle_group = floor((angle - 5.625) / 11.25),
+      desc = paste0("foul_circle_bottom_", angle_group)
+    ) %>%
+    filter(angle_group %% 2 == 0) %>%
+    select(x, y, desc)
+  
+  hoop = circle_points(center = c(0, hoop_center_y), radius = hoop_radius) %>%
+    mutate(desc = "hoop")
+  
+  restricted = circle_points(center = c(0, hoop_center_y), radius = 4) %>%
+    filter(y >= hoop_center_y) %>%
+    mutate(desc = "restricted")
+  
+  three_point_circle = circle_points(center = c(0, hoop_center_y), radius = three_point_radius) %>%
+    filter(y >= three_point_side_height, y >= hoop_center_y)
+  
+  three_point_line = data_frame(
+    x = c(three_point_side_radius, three_point_side_radius, three_point_circle$x, -three_point_side_radius, -three_point_side_radius),
+    y = c(0, three_point_side_height, three_point_circle$y, three_point_side_height, 0),
+    desc = "three_point_line"
+  )
+  
+  court_points = bind_rows(
+    court_points,
+    foul_circle_top,
+    foul_circle_bottom,
+    hoop,
+    restricted,
+    three_point_line
+  )
+  
+  
+  court_points <- court_points
+  
+  # Final plot creation
+  ggplot() +
+    geom_path(
+      data = court_points,
+      aes(x = x, y = y, group = desc),
+      color = court_theme$lines
+    ) +
+    coord_fixed(ylim = c(0, 45), xlim = c(-25, 25)) +
+    theme_minimal(base_size = 22) +
+    theme(
+      text = element_text(color = court_theme$text),
+      plot.background = element_rect(fill = 'gray20', color = 'gray20'),
+      panel.background = element_rect(fill = court_theme$court, color = court_theme$court),
+      panel.grid = element_blank(),
+      panel.border = element_blank(),
+      axis.text = element_blank(),
+      axis.title = element_blank(),
+      axis.ticks = element_blank(),
+      legend.background = element_rect(fill = court_theme$court, color = court_theme$court),
+      legend.margin = margin(-1, 0, 0, 0, unit = "lines"),
+      legend.position = "bottom",
+      legend.key = element_blank(),
+      legend.text = element_text(size = rel(1.0))
+    )
+}
+```
+
+```{r Steph Shot Chart}
+
+curry_chart = curry_v_boston %>%
+  mutate(x = as.numeric(as.character(locationX)) / 10, y = as.numeric(as.character(locationY)) / 10 + hoop_center_y)
+
+
+p1 <- plot_court(court_themes$dark, use_short_three = F) +
+  geom_point(data = curry_chart, aes(x = x, y = y, color = curry_v_boston$isShotMade, fill = curry_v_boston$isShotMade), 
+             size =3, shape = 21, stroke = .5) +  
+  scale_color_manual(values = c("green4","red3"), aesthetics = "color", breaks=c("TRUE", "FALSE"), labels=c("Made", "Missed")) +
+  scale_fill_manual(values = c("green2","red3"), aesthetics = "fill", breaks=c("TRUE", "FALSE"), labels=c("Made", "Missed")) +
+  scale_x_continuous(limits = c(-27.5, 27.5)) +
+  scale_y_continuous(limits = c(0, 45)) +
+  theme(plot.title = element_text(hjust = .5, size = 22, family = "Comic Sans MS", face = "bold", vjust = -4),
+        plot.subtitle = element_text(hjust = .5, size = 10, family = "Comic Sans MS", face = "bold", vjust = -8),
+        legend.position = c(.5, .85),
+        legend.direction = "horizontal",
+        legend.title = element_blank(),
+        legend.text = element_text(hjust = .5, size = 10, family = "Comic Sans MS", face = "bold", colour = "white"),
+        plot.caption = element_text(hjust = .5, size = 6, family = "Comic Sans MS", face = "bold", colour = "lightgrey", vjust = 8)) +
+  ggtitle(label = "Stephen Curry vs. Boston",
+          subtitle = "Games 1 - 3 NBA Finals 2022") 
+ggdraw(p1) + theme(plot.background = element_rect(fill="gray20", color = NA)) 
+
+
+```
+
+```{r Comparison Shot Chart}
+#curry_chart_2 = as.data.frame(curry_v_boston)
+
+#PbP <- PbPmanipulation(PbP.BDB)
+#subdata <- subset(PbP, player=="Stephen Curry")
+
+#shotchart(data = curry_chart_2, 
+ #          x = curry_chart_2$locationX, 
+  #         y = curry_chart_2$locationY,
+   #        scatter = TRUE)
+```
